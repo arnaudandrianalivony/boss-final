@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class BossBehaviour : MonoBehaviour
 {
-    public GameObject player;                                                 // represente le joueur
-    public Rigidbody2D rb;                                                    // represente le rigidbody de l'ennemi
-    public Animator anim;                                                     // represente l'animator de l'ennemi
-    public Collider2D colBoss;                                                // represente le collider de l'ennemi
-    public Collider2D colPlayer;                                              // represente le collider du joueur
-    public float posPlayer;                                                   // represente la position du joueur
-    public float posBoss;                                                     // represente la position du boss
-    public float vitesse;                                                     // represente la vitesse de l'ennemi
-    public bool isfacing;                                                     // vrai si l'ennemi regarde du cote droit
-    public bool running = false;                                              // Vrai si le boss doit courir
-    public bool isGrounded;                                                   // vrai si le boss se trouve se trouve au sol
+    public GameObject player;                                                       // represente le joueur
+    private Rigidbody2D rb;                                                         // represente le rigidbody de l'ennemi
+    private Animator anim;                                                          // represente l'animator de l'ennemi
+    private Collider2D colBoss;                                                     // represente le collider de l'ennemi
+    public Collider2D colPlayer;                                                    // represente le collider du joueur
+    private float posPlayer;                                                        // represente la position du joueur
+    private float posBoss;                                                          // represente la position du boss
+    private float vitesse = 10;                                                     // represente la vitesse de l'ennemi
+    private bool isfacing = true;                                                   // vrai si l'ennemi regarde du cote droit
+    private bool running = false;                                                   // Vrai si le boss doit courir
+    private bool isGrounded;                                                        // vrai si le boss se trouve se trouve au sol
 
     // Start is called before the first frame update
     void Start()
@@ -84,8 +84,8 @@ public class BossBehaviour : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
+        isGrounded = true;
+        if(col.gameObject.CompareTag("Wall"))
+        Destroy(col.gameObject.GetComponent<Collider2D>());
     }
 }
