@@ -1,2 +1,2 @@
 # boss-final
-scene contenant un nouveau personnage.
+scene contenant le boss final.
